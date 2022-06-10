@@ -33,6 +33,5 @@ var genre = document.getElementsByClassName("promo__genre")
 genre[0].textContent = "Drama"
 //3
 var bg = document.getElementsByTagName("body")
-console.log(bg[0])
 bg[0].setAttribute("background", "img/bg.jpg")
 //4
