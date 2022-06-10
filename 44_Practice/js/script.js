@@ -24,7 +24,8 @@ const movieDB = {
     ]
 };
 
-console.log("test")
+var sortedMovies = movieDB.movies.sort()
+console.log(sortedMovies)
 //1
 var adv = document.getElementsByClassName("promo__adv")
 adv[0].remove()
@@ -34,4 +35,11 @@ genre[0].textContent = "Drama"
 //3
 var bg = document.getElementsByTagName("body")
 bg[0].setAttribute("background", "img/bg.jpg")
-//4
+//4 and 5
+var filmList = document.getElementsByClassName("promo__interactive-item")
+if (filmList.length == sortedMovies.length) {
+    for (let i = 0; i < filmList.length; i++){
+        filmList[i].textContent = i + ". " + sortedMovies[i]
+    }
+}
+
