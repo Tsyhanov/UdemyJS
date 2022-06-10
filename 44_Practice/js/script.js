@@ -23,18 +23,46 @@ const movieDB = {
         "Скотт Пилигрим против..."
     ]
 };
-
 var sortedMovies = movieDB.movies.sort()
-console.log(sortedMovies)
+
+
+//1 to 5 from course
+const promoadv = document.querySelectorAll('.promo__adv img'),
+      poster = document.querySelector(".promo__bg"),
+      genre = poster.querySelector(".promo__genre"),
+      movieList = document.querySelector(".promo__interactive-list");
 //1
-var adv = document.getElementsByClassName("promo__adv")
-adv[0].remove()
+promoadv.forEach(item =>{
+    item.remove();
+})
 //2
-var genre = document.getElementsByClassName("promo__genre")
-genre[0].textContent = "Drama"
+genre.textContent = "Drama"
 //3
-var bg = document.getElementsByTagName("body")
-bg[0].setAttribute("background", "img/bg.jpg")
+poster.style.backgroundImage = 'url("img/bg.jpg")'
+//4
+movieList.innerHTML = ""
+//5
+movieDB.movies.sort()
+
+movieDB.movies.forEach((film, i) => {
+    movieList.innerHTML += `
+        <li class="promo__interactive-item">${i+1} ${film}
+            <div class="delete"></div>
+        </li>
+    `;
+})
+
+/*
+//1 to 5 from me
+//1
+//var adv = document.getElementsByClassName("promo__adv")
+//adv[0].remove()
+//2
+//var genre = document.getElementsByClassName("promo__genre")
+//genre[0].textContent = "Drama"
+//3
+//var bg = document.getElementsByTagName("body")
+//bg[0].setAttribute("background", "img/bg.jpg")
 //4 and 5
 var filmList = document.getElementsByClassName("promo__interactive-item")
 if (filmList.length == sortedMovies.length) {
@@ -42,4 +70,4 @@ if (filmList.length == sortedMovies.length) {
         filmList[i].textContent = i + ". " + sortedMovies[i]
     }
 }
-
+*/
