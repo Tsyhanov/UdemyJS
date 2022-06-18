@@ -16,7 +16,6 @@
 
 // Код возьмите из предыдущего домашнего задания
 
-let numberOfFilms;
 
 /*
 function start(){
@@ -76,13 +75,13 @@ function writeYourGenres(){
 */
 
 var personalMovieDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
     privat: false,
     start: function(){
-        let numberOfFilms = +prompt("Скільки фільмів ви вже подивилися?", "0")
+        this.count = +prompt("Скільки фільмів ви вже подивилися?", "0")
         while (numberOfFilms == '' || numberOfFilms == null || numberOfFilms == isNaN(numberOfFilms)){
             numberOfFilms = +prompt("Скільки фільмів ви вже подивилися?", "0")
         }
