@@ -206,4 +206,53 @@ window.addEventListener('DOMContentLoaded', function() {
         'menu__item'
     ).render();   
 
+        //forms
+    const formms = document.querySelectorAll('form')
+
+    const message = {
+        loading: 'loading',
+        success: 'success',
+        failure: 'failure'
+    };
+
+    formms.forEach(item => {
+        postData(item);
+    })
+
+    function postData(form){
+        form.addEventListener('submit', (e)=>{
+            e.preventDefault();
+            const statusMessage = document.createElement('div')
+            statusMessage.classList.add('status');
+            statusMessage.textContent = message.loading;
+            form.append(statusMessage)
+
+
+            const r = new XMLHttpRequest();
+            r.open('POST', 'server.php')
+            r.setRequestHeader('Content-type', 'application/json');
+            const formData = new FormData(form)
+
+            const object = {};
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
+            const json = JSON.stringify(object);
+
+            r.send(json)
+            r.addEventListener('load', ()=>{
+                if (r.status === 200){
+                    console.log(r.response);
+                    statusMessage.textContent = message.success;
+                    form.reset();
+                    setTimeout(()=>{
+                        statusMessage.remove();
+                    }, 2000)
+                } else {
+                    statusMessage.textContent = message.failure;
+                }
+            })
+        })
+    }
+
 });
